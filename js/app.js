@@ -1,4 +1,16 @@
 
+function checkPassword() {
+    if(document.getElementById("pwd").value.length<8){
+        document.getElementById("pwd").style.border = "1px solid red";
+        document.getElementById("pwd-sm").innerHTML = "Password is too short";
+        disableSubmit();
+    }else{
+        document.getElementById("pwd").style.border = "1px solid green";
+        document.getElementById("pwd-sm").innerHTML = "";
+        enableSubmit();
+    };
+}
+
 function checkPasswords() {
     if(document.getElementById("pwd").value !== document.getElementById("pwd-renew").value){
         document.getElementById("pwd-renew").style.border = "1px solid red";

@@ -80,7 +80,8 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" placeholder="Your password" id="pwd" oninput='checkPasswords()'>
+                            <input type="password" class="form-control" placeholder="Your password" id="pwd" oninput='checkPassword();checkPasswords()'>
+                            <small id="pwd-sm" class="form-text text-muted form-errors"></small>
                             <input name="pwd" type="hidden" id="pwd-crypted">
                         </div>
                         <div class="form-group">
