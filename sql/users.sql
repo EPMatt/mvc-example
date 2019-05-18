@@ -12,7 +12,7 @@ CREATE TABLE `users` (
   via varchar(50) NOT NULL,
   provincia varchar(2) NOT NULL,
   comune varchar(50) NOT NULL,
-  tipologia ENUM('A','C','E') NOT NULL COMMENT "Administrator, Client, Employee",
+  tipologia ENUM('Administrator','Client','Employee') NOT NULL COMMENT "Administrator, Client, Employee",
   PRIMARY KEY (`id`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`provincia`) REFERENCES `province` (`sigla`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

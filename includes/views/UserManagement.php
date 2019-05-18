@@ -19,10 +19,15 @@
 <body class="text-center d-flex flex-column">
     <?php require_once "includes/views/components/Navbar.php"; ?>
     <div class="container">
-        <div class="row align-items-center main justify-content-center">
+        <div class="row justify-content-center my-5">
             <div class="col">
                 <h1>Users Management</h1>
                 <p>Manage the DBOrders users from here</p>
+            </div>
+        </div>
+        <?=(isset($_GET['delete-error'])) ?  "<div class=\"alert alert-danger mb-4\" role=\"alert\">Error while deleting user $_GET[id].</div>" : ((isset($_GET['delete-success'])) ? "<div class=\"alert alert-success mb-4\" role=\"alert\">User $_GET[id] deleted successfully!</div>" : "");?>
+        <div class="row justify-content-center my-5">
+            <div class="col">
                 <table id="users_table">
                     <thead>
                         <tr>
@@ -38,14 +43,18 @@
                         <?php
                         foreach ($rs as $user) {
                             ?>
-                            <tr>
-                                <td><?= $user->getUser() ?></td>
-                                <td><?= $user->getTipologia() ?></td>
-                                <td><?= $user->getNome() . " " . $user->getCognome() ?></td>
-                                <td><?= $user->getData_nascita() ?></td>
-                                <td><?= $user->getVia() . ", " . $user->getComune() . "(" . $user->getProvincia() . ")" ?></td>
-                                <td><a class="btn btn-outline-danger" href="users-api-delete?id=<?= $user->getId() ?>">Delete</a> <a class="btn btn-outline-warning" href="users-edit?id=<?= $user->getId() ?>">Edit</a></td>
-                            </tr>
+                        <tr>
+                            <td><?= $user->getUser() ?></td>
+                            <td><?= $user->getTipologia() ?></td>
+                            <td><?= $user->getNome() . " " . $user->getCognome() ?></td>
+                            <td><?= $user->getData_nascita() ?></td>
+                            <td><?= $user->getVia() . ", " . $user->getComune() . "(" . $user->getProvincia() . ")" ?>
+                            </td>
+                            <td><a class="btn btn-outline-danger"
+                                    href="users-api-delete?id=<?= $user->getId() ?>">Delete</a> <a
+                                    class="btn btn-outline-warning" href="users-edit?id=<?= $user->getId() ?>">Edit</a>
+                            </td>
+                        </tr>
                         <?php
                     }
                     ?>

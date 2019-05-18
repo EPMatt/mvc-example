@@ -1,26 +1,34 @@
 
-function checkPassword() {
-    if(document.getElementById("pwd").value.length<8){
-        document.getElementById("pwd").style.border = "1px solid red";
-        document.getElementById("pwd-sm").innerHTML = "Password is too short";
-        disableSubmit();
-    }else{
+function checkPassword(emptyAccepted) {
+    if(emptyAccepted && document.getElementById("pwd").value.length === 0){
+        document.getElementById("pwd").style.border = "1px solid rgb(206, 212, 218)";
+        document.getElementById("pwd-sm").innerHTML = "";
+        enableSubmit();
+    }else if (document.getElementById("pwd").value.length >= 8) {
         document.getElementById("pwd").style.border = "1px solid green";
         document.getElementById("pwd-sm").innerHTML = "";
         enableSubmit();
+    } else {
+        document.getElementById("pwd").style.border = "1px solid red";
+        document.getElementById("pwd-sm").innerHTML = "Password is too short. Type in at least 8 characters.";
+        disableSubmit();
     };
 }
 
-function checkPasswords() {
-    if(document.getElementById("pwd").value !== document.getElementById("pwd-renew").value){
+function checkPasswords(emptyAccepted) {
+    if (document.getElementById("pwd").value !== document.getElementById("pwd-renew").value) {
         document.getElementById("pwd-renew").style.border = "1px solid red";
         document.getElementById("password-sm").innerHTML = "Passwords are not the same";
         disableSubmit();
-    }else{
+    } else if(emptyAccepted&&document.getElementById("pwd-renew").value.length===0){
+        document.getElementById("pwd-renew").style.border = "1px solid rgb(206, 212, 218)";
+        document.getElementById("password-sm").innerHTML = "";
+        enableSubmit();
+    } else{
         document.getElementById("pwd-renew").style.border = "1px solid green";
         document.getElementById("password-sm").innerHTML = "";
         enableSubmit();
-    };
+    }
 }
 
 function checkUsername(current) {
@@ -31,7 +39,7 @@ function checkUsername(current) {
         disableSubmit();
     } else {
         $.post('./users-api-check', { usr: document.getElementById("username").value }, function (d, q, x) {
-            if (d == 0 && current!=null && current!=input.value) {
+            if (d == 0 && current != null && current != input.value) {
                 input.style.border = "1px solid red";
                 document.getElementById("username-sm").innerHTML = "The username is already in use";
                 disableSubmit();
@@ -42,7 +50,7 @@ function checkUsername(current) {
                 enableSubmit();
             }
         });
-        
+
     }
 }
 
@@ -53,28 +61,28 @@ function checkInput(inputId, checkCb) {
 }
 
 
-function disableSubmit(){
-    document.getElementById("submit-button").onclick=null;
+function disableSubmit() {
+    document.getElementById("submit-button").onclick = null;
 }
-function enableSubmit(){
-    document.getElementById("submit-button").onclick=function(){SHA2("pwd","pwd-crypted","form-submit")};
+function enableSubmit() {
+    document.getElementById("submit-button").onclick = submitFoo;
 }
 
-function checkDataTooLong(inputId,inputSmId,len){
-    let input=document.getElementById(inputId);
-    let inputSm=document.getElementById(inputSmId);
-    if(input.value.length>len){
-        input.style.border="1px solid red";
-        inputSm.innerHTML="Data too long!";
+function checkDataTooLong(inputId, inputSmId, len) {
+    let input = document.getElementById(inputId);
+    let inputSm = document.getElementById(inputSmId);
+    if (input.value.length > len) {
+        input.style.border = "1px solid red";
+        inputSm.innerHTML = "Data too long!";
         disableSubmit();
-    }else{
-        input.style.border="1px solid green";
-        inputSm.innerHTML="";
+    } else {
+        input.style.border = "1px solid green";
+        inputSm.innerHTML = "";
         enableSubmit();
     }
 }
 
-function SHA2(uncrypted,crypted,form) {
+function SHA2(uncrypted, crypted, form) {
     var str = document.getElementById(uncrypted).value;
     var buffer = new TextEncoder("utf-8").encode(str);
     return crypto.subtle.digest("SHA-512", buffer).then(
@@ -84,6 +92,21 @@ function SHA2(uncrypted,crypted,form) {
         }
     );
 }
+
+
+function updateSHA2(uncrypted, crypted, form) {
+    var str = document.getElementById(uncrypted).value;
+    if (str.length > 0) {
+        var buffer = new TextEncoder("utf-8").encode(str);
+        return crypto.subtle.digest("SHA-512", buffer).then(
+            function (hash) {
+                document.getElementById(crypted).value = toHex(hash);
+                document.getElementById(form).submit();
+            }
+        );
+    } else document.getElementById(form).submit();
+}
+
 
 function toHex(msg) {
     return Array

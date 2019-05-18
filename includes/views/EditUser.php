@@ -24,20 +24,34 @@
                 <h1>User <?=$user->getUser()?></h1>
             </div>
         </div>
-        <form method="post" name="update">
+        <?=(isset($_GET['error'])) ? '<div class="alert alert-danger mb-4" role="alert">Error while updating the user</div>' : ((isset($_GET['success'])) ? '<div class="alert alert-success mb-4" role="alert">User updated successfully!</div>' : "");?>
+        <form method="post" id="form-submit" action="users-api-update?id=<?=$user->getId()?>">
             <div class="row mb-3">
                 <div class="col">
                     <h4>Personal info:</h4>
                 </div>
             </div>
             <div class="form-group row align-items-center">
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2">
                     <label for="username">Username</label>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-10 col-md-4">
                     <input type="text" class="form-control" name="user" placeholder="johnsmith"
                         oninput='checkUsername("<?=$user->getUser()?>")' id="username" value=<?=$user->getUser()?>>
                     <small id="username-sm" class="form-text text-muted form-errors"></small>
+                </div>
+                <div class="col-sm-2 col-md-2">
+                    <label for="tipologia">Account Role</label>
+                </div>
+                <div class="col-sm-10 col-md-4">
+                    <select class="form-control" name="tipologia">
+                        <option value="Administrator"
+                            <?=(($user->getTipologia() == 'Administrator') ? "selected" : "")?>>Administrator</option>
+                        <option value="Employee" <?=(($user->getTipologia() == 'Employee') ? "selected" : "")?>>Employee
+                        </option>
+                        <option value="Client" <?=(($user->getTipologia() == 'Client') ? "selected" : "")?>>Client
+                        </option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row align-items-center">
@@ -93,16 +107,15 @@
                 </div>
                 <div class="col-sm-10 col-md-4">
                     <select class="form-control" name="provincia">
-
                         <?php
-                                            foreach ($provinces as $province) {
-                                        ?>
+                            foreach ($provinces as $province) {
+                        ?>
                         <option value=<?=$province->getSigla()?>
-                            <?=(($user->getProvincia()==$province->getSigla())?"selected":"")?>>
+                            <?=(($user->getProvincia() == $province->getSigla()) ? "selected" : "")?>>
                             <?=$province->getNome();?></option>
                         <?php
-                                            }
-                                        ?>
+                            }
+                        ?>
                     </select>
                 </div>
             </div>
@@ -118,7 +131,8 @@
                 </div>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" placeholder="The new password" id="pwd"
-                        oninput='checkPasswords()'>
+                        oninput='checkPassword(true);checkPasswords(true)'>
+                    <small id="pwd-sm" class="form-text text-muted form-errors"></small>
                     <input name="pwd" type="hidden" id="pwd-crypted">
                 </div>
             </div>
@@ -128,20 +142,24 @@
                 </div>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" placeholder="Repeat password" id="pwd-renew"
-                        oninput='checkPasswords()'>
+                        oninput='checkPasswords(true)'>
                     <small id="password-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
         </form>
         <div class="row justify-content-between mt-5">
             <a href="users" class="btn btn-secondary">Go back</a>
-            <button class="btn btn-primary" onclick='SHA2("pwd","pwd-crypted","form-submit");' id="submit-button">Update
+            <button class="btn btn-primary" onclick='updateSHA2("pwd","pwd-crypted","form-submit");'
+                id="submit-button">Update
                 user</button>
         </div>
     </div>
 
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        var submitFoo = function () { updateSHA2("pwd", "pwd-crypted", "form-submit") };
+    </script>
     <script type="text/javascript" src="js/app.js"></script>
     <?php include "includes/views/components/footer.php";?>
 </body>
