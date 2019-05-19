@@ -12,6 +12,7 @@
 }
 .btn-primary {
     background-color: #01579b !important;
+   
 }
 
 .form-errors{
@@ -62,4 +63,13 @@ transition: background-color 0.5s;
 
 .crud-icon:hover img{
     filter:invert(100%);
+}
+
+.btn{
+    box-shadow:0px 0px 0px 0px;
+    transition: box-shadow 0.3s;
+}
+
+.btn:hover{
+    box-shadow: 0px 0px 7px 2px #888888;
 }
