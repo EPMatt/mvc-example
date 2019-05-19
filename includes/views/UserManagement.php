@@ -17,7 +17,7 @@
 </head>
 
 <body class="text-center d-flex flex-column">
-    <?php require_once "includes/views/components/Navbar.php"; ?>
+    <?php $users=''; require_once "includes/views/components/Navbar.php"; ?>
     <div class="container">
         <div class="row justify-content-center my-5">
             <div class="col">

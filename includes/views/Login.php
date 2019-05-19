@@ -13,7 +13,7 @@
 </head>
 
 <body class="text-center d-flex flex-column">
-    <?php require_once "includes/views/components/Navbar.php";?>
+    <?php $home=''; require_once "includes/views/components/Navbar.php";?>
     <div class="container-fluid">
         <div class="row align-items-center main pt-5">
             <div class="col">

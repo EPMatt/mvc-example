@@ -13,7 +13,7 @@
 </head>
 
 <body class="d-flex flex-column">
-    <?php require_once "includes/views/components/Navbar.php";?>
+    <?php $about=''; require_once "includes/views/components/Navbar.php";?>
     <div class="container mt-5">
         <div class="row mb-5">
             <div class="col">
