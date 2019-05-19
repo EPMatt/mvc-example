@@ -50,9 +50,19 @@
                             <td><?= $user->getData_nascita() ?></td>
                             <td><?= $user->getVia() . ", " . $user->getComune() . "(" . $user->getProvincia() . ")" ?>
                             </td>
-                            <td><a class="btn btn-outline-danger"
-                                    href="users-api-delete?id=<?= $user->getId() ?>">Delete</a> <a
-                                    class="btn btn-outline-warning" href="users-edit?id=<?= $user->getId() ?>">Edit</a>
+                            <td>
+                                <div class="d-flex justify-content-center"><a
+                                        href="users-delete?id=<?= $user->getId() ?>">
+                                        <div class="crud-icon crud-icon-delete d-flex justify-content-center align-items-center">
+                                            <img width="18px" height="18px" src="img/trashcan.svg">
+                                        </div>
+                                    </a>
+                                    <a href="users-edit?id=<?= $user->getId() ?>">
+                                        <div class="crud-icon crud-icon-edit d-flex justify-content-center align-items-center">
+                                            <img  width="18px" height="18px" src="img/pencil.svg">
+                                        </div>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         <?php

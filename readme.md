@@ -11,8 +11,10 @@ For the model component, designed with ORM, I used my [ORM Templates](https://gi
 ## Copyright Notice
 DBOrders is property work of [Matteo Agnoletto (@EPMatt)](https://epmatt.com).
 
- The web app uses [DataTables](https://datatables.net/) for adding functionality to HTML tables. DataTables is licensed under the [MIT License](./lic/datatables.txt).
+The web app uses [DataTables](https://datatables.net/) for adding functionality to HTML tables. DataTables is licensed under the [MIT License](./lic/datatables.txt).
 
 Fonts from the  [Inter font family](https:/github.com/rsms/inter) are used. These fonts are licensed under the [MIT License](./lic/inter.txt).
+
+The web app also uses Github's [Octicons](https://github.com/primer/octicons/). Octicons are licensed under the [MIT License](./lic/octicons.txt).
 
 DBOrders is built over Twitter's [Bootstrap framework](https://getbootstrap.com/). Bootstrap is licensed under the [MIT License](./lic/bootstrap.txt).

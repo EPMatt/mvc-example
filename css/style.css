@@ -36,3 +36,30 @@ html,body{
 .main{
     min-height: 80vh;
 }
+
+.crud-icon{
+width: 30px;
+height: 30px;
+background-color: #f0f0f0;
+border-radius: 50px;
+box-shadow: 0px 0px 7px 0px #888888;
+margin:8px 8px 8px 8px;
+transition: background-color 0.5s;
+}
+
+.crud-icon-edit:hover{
+    background-color: #ffc107;
+}
+
+.crud-icon-delete:hover{
+    background-color: #dc3545;
+}
+
+.crud-icon img{
+    filter:invert(0%);
+    transition: filter 0.4s;
+}
+
+.crud-icon:hover img{
+    filter:invert(100%);
+}
