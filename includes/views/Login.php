@@ -68,13 +68,13 @@
                         <div class="form-group">
                             <label for="firstname">First Name</label>
                             <input type="text" class="form-control" name="nome" placeholder="John"
-                                oninput='checkDataTooLong("firstname","firstname-sm",50)' id="firstname">
+                                oninput='checkDataLength("firstname","firstname-sm",1,50)' id="firstname">
                             <small id="firstname-sm" class="form-text text-muted form-errors"></small>
                         </div>
                         <div class="form-group">
                             <label for="lastname">Last Name</label>
                             <input type="text" class="form-control" name="cognome" placeholder="Smith"
-                                oninput='checkDataTooLong("lastname","lastname-sm",50)' id="lastname">
+                                oninput='checkDataLength("lastname","lastname-sm",1,50)' id="lastname">
                             <small id="lastname-sm" class="form-text text-muted form-errors"></small>
                         </div>
                         <div class="form-group">
@@ -103,13 +103,13 @@
                         <div class="form-group">
                             <label for="via">Street</label>
                             <input type="text" class="form-control" name="via" placeholder="Baker Street 37B"
-                                oninput='checkDataTooLong("via","via-sm",50)' id="via">
+                                oninput='checkDataLength("via","via-sm",1,50)' id="via">
                             <small id="via-sm" class="form-text text-muted form-errors"></small>
                         </div>
                         <div class="form-group">
                             <label for="comune">City</label>
                             <input type="text" class="form-control" name="comune" placeholder="London"
-                                oninput='checkDataTooLong("city","city-sm",50)' id="city">
+                                oninput='checkDataLength("city","city-sm",1,50)' id="city">
                             <small id="city-sm" class="form-text text-muted form-errors"></small>
                         </div>
                         <div class="form-group">

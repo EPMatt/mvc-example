@@ -1,10 +1,10 @@
 
 function checkPassword(emptyAccepted) {
-    if(emptyAccepted && document.getElementById("pwd").value.length === 0){
+    if (emptyAccepted && document.getElementById("pwd").value.length === 0) {
         document.getElementById("pwd").style.border = "1px solid rgb(206, 212, 218)";
         document.getElementById("pwd-sm").innerHTML = "";
         enableSubmit();
-    }else if (document.getElementById("pwd").value.length >= 8) {
+    } else if (document.getElementById("pwd").value.length >= 8) {
         document.getElementById("pwd").style.border = "1px solid green";
         document.getElementById("pwd-sm").innerHTML = "";
         enableSubmit();
@@ -20,11 +20,11 @@ function checkPasswords(emptyAccepted) {
         document.getElementById("pwd-renew").style.border = "1px solid red";
         document.getElementById("password-sm").innerHTML = "Passwords are not the same";
         disableSubmit();
-    } else if(emptyAccepted&&document.getElementById("pwd-renew").value.length===0){
+    } else if (emptyAccepted && document.getElementById("pwd-renew").value.length === 0) {
         document.getElementById("pwd-renew").style.border = "1px solid rgb(206, 212, 218)";
         document.getElementById("password-sm").innerHTML = "";
         enableSubmit();
-    } else{
+    } else {
         document.getElementById("pwd-renew").style.border = "1px solid green";
         document.getElementById("password-sm").innerHTML = "";
         enableSubmit();
@@ -68,12 +68,16 @@ function enableSubmit() {
     document.getElementById("submit-button").onclick = submitFoo;
 }
 
-function checkDataTooLong(inputId, inputSmId, len) {
+function checkDataLength(inputId, inputSmId, minLen, maxLen) {
     let input = document.getElementById(inputId);
     let inputSm = document.getElementById(inputSmId);
-    if (input.value.length > len) {
+    if (input.value.length > maxLen) {
         input.style.border = "1px solid red";
         inputSm.innerHTML = "Data too long!";
+        disableSubmit();
+    } else if (input.value.length < minLen) {
+        input.style.border = "1px solid red";
+        inputSm.innerHTML = "Data too short!";
         disableSubmit();
     } else {
         input.style.border = "1px solid green";

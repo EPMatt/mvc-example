@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-sm-10 col-md-4">
                     <input type="text" class="form-control" name="nome" placeholder="John"
-                        oninput='checkDataTooLong("firstname","firstname-sm",50)' id="firstname"
+                        oninput='checkDataLength("firstname","firstname-sm",1,50)' id="firstname"
                         value=<?=$user->getNome()?>>
                     <small id="firstname-sm" class="form-text text-muted form-errors"></small>
                 </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-sm-10 col-md-4">
                     <input type="text" class="form-control" name="cognome" placeholder="Smith"
-                        oninput='checkDataTooLong("lastname","lastname-sm",50)' id="lastname"
+                        oninput='checkDataLength("lastname","lastname-sm",1,50)' id="lastname"
                         value=<?=$user->getCognome()?>>
                     <small id="lastname-sm" class="form-text text-muted form-errors"></small>
                 </div>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="via" placeholder="Baker Street 37B"
-                        oninput='checkDataTooLong("via","via-sm",50)' id="via" value=<?=$user->getVia()?>>
+                        oninput='checkDataLength("via","via-sm",1,50)' id="via" value=<?=$user->getVia()?>>
                     <small id="via-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-sm-10 col-md-4">
                     <input type="text" class="form-control" name="comune" placeholder="London"
-                        oninput='checkDataTooLong("city","city-sm",50)' id="city" value=<?=$user->getComune()?>>
+                        oninput='checkDataLength("city","city-sm",1,50)' id="city" value=<?=$user->getComune()?>>
                     <small id="city-sm" class="form-text text-muted form-errors"></small>
                 </div>
                 <div class="col-sm-2 col-md-2">
