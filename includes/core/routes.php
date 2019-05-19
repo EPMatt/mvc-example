@@ -18,6 +18,9 @@ $routes=[
     "users-edit"=>function(){
         (new UserController)->showEditView();
     },
+    "users-new"=>function(){
+        (new UserController)->showNewView();
+    },
     "users-api-update"=>function(){
         (new UserController)->updateUser();
     },
@@ -26,6 +29,9 @@ $routes=[
     },
     "users-api-check"=>function(){
         (new UserController)->checkUsername();
+    },
+    "users-api-new"=>function(){
+        (new UserController)->newUser();
     },
     "about"=>function(){
         (new AboutController)->showView();

@@ -130,7 +130,48 @@ class UserController extends Controller {
         } else {
             echo 1;
         }
+    }
 
+    public function showNewView(){
+        if (isset($_SESSION['admin'])) {
+            require_once "includes/model/Provinces.php";
+            $provincesDao = new Provinces(new DBConnector("config.ini"), "province");
+            $provinces = $provincesDao->selectByFilter([]);
+            require_once "includes/views/NewUser.php";
+        } else {
+            require_once "includes/views/404.php";
+        }
+    }
+
+    public function newUser(){
+        if (isset($_SESSION['admin'])) {
+            //get from post array
+            $id = $_GET['id'];
+            $user = $_POST['user'];
+            $password = $_POST['pwd'];
+            $cognome = $_POST['cognome'];
+            $nome = $_POST['nome'];
+            $data_nascita = $_POST['data_nascita'];
+            $via = $_POST['via'];
+            $provincia = $_POST['provincia'];
+            $comune = $_POST['comune'];
+            $tipologia = $_POST['tipologia'];
+            //check data
+            $safe_data = true;
+            //insert
+            if ($safe_data) {
+                if ($this->users->insert(new User($id, $user, $password, $cognome, $nome, $data_nascita, $via, $provincia, $comune, $tipologia))) {
+                    $_SESSION['user'] = $_POST['user'];
+                    header("Location: users?id=$id&new-success");
+                } else {
+                    header("Location: users-new?error");
+                }
+            } else {
+                header("Location: users-new?error");
+            }
+        } else {
+            require_once "includes/views/404.php";
+        }
     }
 
 }

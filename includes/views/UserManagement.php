@@ -25,7 +25,7 @@
                 <p>Manage the DBOrders users from here</p>
             </div>
         </div>
-        <?=(isset($_GET['delete-error'])) ?  "<div class=\"alert alert-danger mb-4\" role=\"alert\">Error while deleting user $_GET[id].</div>" : ((isset($_GET['delete-success'])) ? "<div class=\"alert alert-success mb-4\" role=\"alert\">User $_GET[id] deleted successfully!</div>" : "");?>
+        <?=(isset($_GET['delete-error'])) ?  "<div class=\"alert alert-danger mb-4\" role=\"alert\">Error while deleting user $_GET[id].</div>" : ((isset($_GET['delete-success'])) ? "<div class=\"alert alert-success mb-4\" role=\"alert\">User $_GET[id] deleted successfully!</div>" :  ((isset($_GET['new-success'])) ? "<div class=\"alert alert-success mb-4\" role=\"alert\">User $_GET[id] successfully created!</div>" : ""));?>
         <div class="row justify-content-center my-5">
             <div class="col">
                 <table id="users_table">
@@ -53,13 +53,15 @@
                             <td>
                                 <div class="d-flex justify-content-center"><a
                                         href="users-delete?id=<?= $user->getId() ?>">
-                                        <div class="crud-icon crud-icon-delete d-flex justify-content-center align-items-center">
+                                        <div
+                                            class="crud-icon crud-icon-delete d-flex justify-content-center align-items-center">
                                             <img width="18px" height="18px" src="img/trashcan.svg">
                                         </div>
                                     </a>
                                     <a href="users-edit?id=<?= $user->getId() ?>">
-                                        <div class="crud-icon crud-icon-edit d-flex justify-content-center align-items-center">
-                                            <img  width="18px" height="18px" src="img/pencil.svg">
+                                        <div
+                                            class="crud-icon crud-icon-edit d-flex justify-content-center align-items-center">
+                                            <img width="18px" height="18px" src="img/pencil.svg">
                                         </div>
                                     </a>
                                 </div>
@@ -70,6 +72,7 @@
                     ?>
                     </tbody>
                 </table>
+                <a class="btn btn-primary" href="users-new">New User</a>
             </div>
         </div>
     </div>
@@ -80,9 +83,9 @@
     <script type="text/javascript" src="./datatables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="./datatables/Responsive-2.2.2/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript">
-        $('#users_table').DataTable({
-            responsive: true
-        });
+    $('#users_table').DataTable({
+        responsive: true
+    });
     </script>
     <?php include "includes/views/components/footer.php"; ?>
 </body>

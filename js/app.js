@@ -25,7 +25,8 @@ function checkPasswords(emptyAccepted) {
         document.getElementById("password-sm").innerHTML = "";
         enableSubmit();
     } else {
-        document.getElementById("pwd-renew").style.border = "1px solid green";
+        if (document.getElementById("pwd").style.border == "1px solid red") document.getElementById("pwd-renew").style.border = "1px solid red";
+        else document.getElementById("pwd-renew").style.border = "1px solid green";
         document.getElementById("password-sm").innerHTML = "";
         enableSubmit();
     }
@@ -39,15 +40,16 @@ function checkUsername(current) {
         disableSubmit();
     } else {
         $.post('./users-api-check', { usr: document.getElementById("username").value }, function (d, q, x) {
-            if (d == 0 && current != null && current != input.value) {
-                input.style.border = "1px solid red";
-                document.getElementById("username-sm").innerHTML = "The username is already in use";
-                disableSubmit();
-            }
-            else {
+            if (d == 1 || d == 0 && current === input.value) {
                 input.style.border = "1px solid green";
                 document.getElementById("username-sm").innerHTML = "";
                 enableSubmit();
+            }
+            else {
+
+                input.style.border = "1px solid red";
+                document.getElementById("username-sm").innerHTML = "The username is already in use";
+                disableSubmit();
             }
         });
 
