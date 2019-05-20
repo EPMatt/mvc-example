@@ -30,7 +30,6 @@
         else if(isset($_GET['delete-success'])) echo "<div class=\"alert alert-success mb-4\" role=\"alert\">User $_GET[id] deleted successfully!</div>";
         else if(isset($_GET['new-success'])) echo "<div class=\"alert alert-success mb-4\" role=\"alert\">User $_GET[id] successfully created!</div>";
         else if(isset($_GET['delete-bulk-success'])) echo "<div class=\"alert alert-success mb-4\" role=\"alert\">$_GET[c] out of $_GET[t] users successfully deleted!</div>";
-        else if(isset($_GET['delete-bulk-success'])) echo "<div class=\"alert alert-success mb-4\" role=\"alert\">$_GET[c] out of $_GET[t] users successfully deleted!</div>";
         else if(isset($_GET['delete-bulk-error'])) echo "<div class=\"alert alert-danger mb-4\" role=\"alert\">$_GET[c] out of $_GET[t] users deleted</div>";
         ?>
         <div class="row justify-content-center my-5">
@@ -76,10 +75,13 @@ foreach ($rs as $user) {
                                         </a>
                                     </div>
                                 </td>
-                                <td><input name="<?=$user->getId()?>" type="checkbox" class="check elem-check" onchange="updateSelections()" </td>
-                                        </tr> <?php
+                                <td><input name="<?=$user->getId()?>" type="checkbox" class="check elem-check"
+                                        onchange="updateSelections()"></td>
+                            </tr> <?php
 }
-?> </tbody> </table> </form> <a class="btn btn-primary" href="users-new">New User</a>
+?> </tbody>
+                    </table>
+                </form> <a class="btn btn-primary mt-5" href="users-new">New User</a>
             </div>
         </div>
     </div>
@@ -91,21 +93,23 @@ foreach ($rs as $user) {
     <script type="text/javascript" src="./datatables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="./datatables/Responsive-2.2.2/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript">
-    
     $('document').ready(function() {
         $('input[type="search"]').on('input', function() {
             $('input:checkbox').prop('checked', false);
             $('#bulkCheck').prop('indeterminate', false);
         });
         $('#users_table').DataTable({
-        responsive: true
-    });
-    $('#users_table_wrapper>:nth-child(1)>:nth-child(1)').removeClass('col-md-6').addClass('col-md-3');
-        $('#users_table_wrapper>:nth-child(1)>:nth-child(2)').before($('<div></div>').addClass('col-sm-12 col-md-3 text-center').prop('id','users_table_bulk').html('<select onchange="if(this.options[this.selectedIndex].value==\'d\')deleteUsers();" class="form-control form-control-sm"><option value="" selected disabled hidden>Bulk Actions</option><option value="d">Delete Selected</option></select>'));
+            responsive: true
+        });
+        $('#users_table_wrapper>:nth-child(1)>:nth-child(1)').removeClass('col-md-6').addClass('col-md-3');
+        $('#users_table_wrapper>:nth-child(1)>:nth-child(2)').before($('<div></div>').addClass(
+            'col-sm-12 col-md-3 text-center').prop('id', 'table_bulk').html(
+            '<select onchange="if(this.options[this.selectedIndex].value==\'d\')deleteUsers();" class="form-control form-control-sm"><option value="" selected disabled hidden>Bulk Actions</option><option value="d">Delete Selected</option></select>'
+            ));
         $('#users_table_wrapper>:nth-child(1)').addClass('align-items-center justify-content-center');
         $('#users_table_wrapper>:nth-child(1) label').addClass('mb-0');
         $('#users_table_wrapper>:nth-child(1)>*').addClass('my-2');
-        }); 
+    });
     </script>
     <?php include "includes/views/components/footer.php";?>
 </body>

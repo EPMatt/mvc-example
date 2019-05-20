@@ -89,7 +89,7 @@ transition: background-color 0.5s;
     content:none;
 }
 
-#users_table_bulk{
+#table_bulk{
     max-width:200px;
 }
 

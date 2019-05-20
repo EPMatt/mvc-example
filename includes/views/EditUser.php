@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-sm-10 col-md-4">
                     <input type="text" class="form-control" name="user" placeholder="johnsmith"
-                        oninput='checkUsername("<?=$user->getUser()?>")' id="username" value=<?=$user->getUser()?>>
+                        oninput='checkUsername("<?=$user->getUser()?>")' id="username" value="<?=$user->getUser()?>">
                     <small id="username-sm" class="form-text text-muted form-errors"></small>
                 </div>
                 <div class="col-sm-2 col-md-2">
@@ -61,7 +61,7 @@
                 <div class="col-sm-10 col-md-4">
                     <input type="text" class="form-control" name="nome" placeholder="John"
                         oninput='checkDataLength("firstname","firstname-sm",1,50)' id="firstname"
-                        value=<?=$user->getNome()?>>
+                        value="<?=$user->getNome()?>">
                     <small id="firstname-sm" class="form-text text-muted form-errors"></small>
                 </div>
                 <div class="col-sm-2 col-md-2">
@@ -70,7 +70,7 @@
                 <div class="col-sm-10 col-md-4">
                     <input type="text" class="form-control" name="cognome" placeholder="Smith"
                         oninput='checkDataLength("lastname","lastname-sm",1,50)' id="lastname"
-                        value=<?=$user->getCognome()?>>
+                        value="<?=$user->getCognome()?>">
                     <small id="lastname-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-sm-10">
                     <input type="date" class="form-control" name="data_nascita" placeholder="2018/01/01"
-                        value=<?=$user->getData_nascita()?>>
+                        value="<?=$user->getData_nascita()?>">
                 </div>
             </div>
             <div class="form-group row align-items-center">
@@ -89,7 +89,7 @@
                 </div>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="via" placeholder="Baker Street 37B"
-                        oninput='checkDataLength("via","via-sm",1,50)' id="via" value=<?=$user->getVia()?>>
+                        oninput='checkDataLength("via","via-sm",1,50)' id="via" value="<?=$user->getVia()?>">
                     <small id="via-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-sm-10 col-md-4">
                     <input type="text" class="form-control" name="comune" placeholder="London"
-                        oninput='checkDataLength("city","city-sm",1,50)' id="city" value=<?=$user->getComune()?>>
+                        oninput='checkDataLength("city","city-sm",1,50)' id="city" value="<?=$user->getComune()?>">
                     <small id="city-sm" class="form-text text-muted form-errors"></small>
                 </div>
                 <div class="col-sm-2 col-md-2">
@@ -110,7 +110,7 @@
                         <?php
                             foreach ($provinces as $province) {
                         ?>
-                        <option value=<?=$province->getSigla()?>
+                        <option value="<?=$province->getSigla()?>"
                             <?=(($user->getProvincia() == $province->getSigla()) ? "selected" : "")?>>
                             <?=$province->getNome();?></option>
                         <?php
