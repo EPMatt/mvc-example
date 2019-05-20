@@ -27,6 +27,9 @@ $routes=[
     "users-api-delete"=>function(){
         (new UserController)->deleteUser();
     },
+    "users-api-delete-bulk"=>function(){
+        (new UserController)->deleteUsers();
+    },
     "users-api-check"=>function(){
         (new UserController)->checkUsername();
     },

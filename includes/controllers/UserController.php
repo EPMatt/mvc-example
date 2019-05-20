@@ -66,6 +66,26 @@ class UserController extends Controller {
         }
     }
 
+
+    public function deleteUsers() {
+        if (isset($_SESSION['admin'])) {
+            $count=0;
+            foreach ($_POST as $key => $value) {
+                $id=$key;
+                if($this->users->delete($this->users->selectByFilter(["id" => $id])[0]))$count++;
+            }
+            $total=count($_POST);
+            if($count===$total){
+                header("Location: users?delete-bulk-success&c=$count&t=$total");
+            }else{
+                header("Location: users?delete-bulk-error&c=$count&t=$total");
+            }
+            print_r( $_POST);
+        } else {
+            require_once "includes/views/404.php";
+        }
+    }
+
     public function deleteUser() {
         if (isset($_SESSION['admin'])) {
             $id=$_GET['id'];

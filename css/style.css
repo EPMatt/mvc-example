@@ -12,7 +12,6 @@
 }
 .btn-primary {
     background-color: #01579b !important;
-   
 }
 
 .form-errors{
@@ -72,4 +71,29 @@ transition: background-color 0.5s;
 
 .btn:hover{
     box-shadow: 0px 0px 7px 2px #888888;
+}
+
+.check{
+    width:20px;
+    height:20px;
+    margin:8px 8px 8px 8px;
+}
+.check-th{
+    background-image: unset !important;
+    padding:10px 18px 10px 18px !important;
+}
+.check-th:after{
+    content:none;
+}
+.check-th:before{
+    content:none;
+}
+
+#users_table_bulk{
+    max-width:200px;
+}
+
+li.paginate_button.page-item.active a{
+    background-color: #01579b !important;
+    border-color: #01579b !important;
 }

@@ -120,3 +120,27 @@ function toHex(msg) {
         .map(b => b.toString(16).padStart(2, "0"))
         .join("");
 }
+
+function updateBulkSelection() {
+    var c = document.getElementById("bulkCheck");
+    $('input:checkbox.elem-check').prop('checked', c.checked);
+}
+
+function updateSelections() {
+    var c = document.getElementById("bulkCheck");
+    if ($('input:checkbox.elem-check:checked').length == 0) {
+        c.checked = false;
+        c.indeterminate=false;
+    }else if ($('input:checkbox.elem-check:checked').length == $('input:checkbox.elem-check').length){
+        c.checked = true;
+        c.indeterminate=false;
+    }else if (c.checked == true || c.checked == false) {
+        c.indeterminate = true;
+    }
+}
+
+function deleteUsers(){
+    $('#users-form').prop('action',"users-api-delete-bulk");
+    $('#users_table_wrapper select').prop('name','');
+    $('#users-form').submit();
+}
