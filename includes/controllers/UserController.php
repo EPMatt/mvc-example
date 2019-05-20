@@ -14,8 +14,10 @@ class UserController extends Controller {
         if (isset($_SESSION['admin'])) {
             $rs = $this->users->selectByFilter([]);
             require_once "includes/views/UserManagement.php";
-        } else {
+        } else if (isset($_SESSION['user'])) {
             require_once "includes/views/404.php";
+        } else {
+            header('Location: .');
         }
     }
 
@@ -26,8 +28,10 @@ class UserController extends Controller {
             $provincesDao = new Provinces(new DBConnector("config.ini"), "province");
             $provinces = $provincesDao->selectByFilter([]);
             require_once "includes/views/EditUser.php";
-        } else {
+        } else if (isset($_SESSION['user'])) {
             require_once "includes/views/404.php";
+        } else {
+            header('Location: .');
         }
     }
 
@@ -61,41 +65,49 @@ class UserController extends Controller {
             } else {
                 header("Location: users-edit?id=$id&error");
             }
-        } else {
+        } else if (isset($_SESSION['user'])) {
             require_once "includes/views/404.php";
+        } else {
+            header('Location: .');
         }
     }
 
-
     public function deleteUsers() {
         if (isset($_SESSION['admin'])) {
-            $count=0;
+            $count = 0;
             foreach ($_POST as $key => $value) {
-                $id=$key;
-                if($this->users->delete($this->users->selectByFilter(["id" => $id])[0]))$count++;
+                $id = $key;
+                if ($this->users->delete($this->users->selectByFilter(["id" => $id])[0])) {
+                    $count++;
+                }
+
             }
-            $total=count($_POST);
-            if($count===$total){
+            $total = count($_POST);
+            if ($count === $total) {
                 header("Location: users?delete-bulk-success&c=$count&t=$total");
-            }else{
+            } else {
                 header("Location: users?delete-bulk-error&c=$count&t=$total");
             }
-            print_r( $_POST);
-        } else {
+            print_r($_POST);
+        } else if (isset($_SESSION['user'])) {
             require_once "includes/views/404.php";
+        } else {
+            header('Location: .');
         }
     }
 
     public function deleteUser() {
         if (isset($_SESSION['admin'])) {
-            $id=$_GET['id'];
-            if($this->users->delete($this->users->selectByFilter(["id" => $id])[0])){
+            $id = $_GET['id'];
+            if ($this->users->delete($this->users->selectByFilter(["id" => $id])[0])) {
                 header("Location: users?id=$id&delete-success");
-            }else{
+            } else {
                 header("Location: users?id=$id&delete-error");
             }
-        } else {
+        } else if (isset($_SESSION['user'])) {
             require_once "includes/views/404.php";
+        } else {
+            header('Location: .');
         }
     }
 
@@ -152,18 +164,20 @@ class UserController extends Controller {
         }
     }
 
-    public function showNewView(){
+    public function showNewView() {
         if (isset($_SESSION['admin'])) {
             require_once "includes/model/Provinces.php";
             $provincesDao = new Provinces(new DBConnector("config.ini"), "province");
             $provinces = $provincesDao->selectByFilter([]);
             require_once "includes/views/NewUser.php";
-        } else {
+        } else if (isset($_SESSION['user'])) {
             require_once "includes/views/404.php";
+        } else {
+            header('Location: .');
         }
     }
 
-    public function newUser(){
+    public function newUser() {
         if (isset($_SESSION['admin'])) {
             //get from post array
             $id = $_GET['id'];
@@ -189,8 +203,10 @@ class UserController extends Controller {
             } else {
                 header("Location: users-new?error");
             }
-        } else {
+        } else if (isset($_SESSION['user'])) {
             require_once "includes/views/404.php";
+        } else {
+            header('Location: .');
         }
     }
 

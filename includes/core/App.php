@@ -6,7 +6,7 @@
  */
 
 require_once "routes.php";
-function __autoload($class_name){
+function __autoload($class_name) {
     require_once "includes/controllers/$class_name.php";
 }
 class App {
@@ -19,8 +19,10 @@ class App {
         global $routes;
         if (array_key_exists($this->route, $routes)) {
             $routes[$this->route]->__invoke();
+        } else if (isset($_SESSION['user'])) {
+            require_once "includes/views/404.php";
         } else {
-            require_once"includes/views/404.php";
+            header('Location: .');
         }
 
     }
