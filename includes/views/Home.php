@@ -20,7 +20,6 @@
                 <h1>Welcome to DBOrders, <?=$_SESSION['user']?>!</h1>
                 <p>Browse the products database from here!</p>
                 <a  href="products" class="btn btn-primary">List Products</a>
-                <a  href="products" class="btn btn-primary">Product Search</a>
             </div>
         </div>
     </div>
