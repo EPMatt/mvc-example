@@ -57,7 +57,6 @@ class UserController extends Controller {
             //insert
             if ($safe_data) {
                 if ($this->users->update(new User($id, $user, $password, $cognome, $nome, $data_nascita, $via, $provincia, $comune, $tipologia))) {
-                    $_SESSION['user'] = $_POST['user'];
                     header("Location: users-edit?id=$id&success");
                 } else {
                     header("Location: users-edit?id=$id&error");
@@ -119,6 +118,8 @@ class UserController extends Controller {
             $_SESSION['user'] = $rs[0]->getUser();
             if ($rs[0]->getTipologia() === 'Administrator') {
                 $_SESSION['admin'] = true;
+            }else if ($rs[0]->getTipologia() === 'Employee') {
+                $_SESSION['employee'] = true;
             }
             header("Location: .");
         }

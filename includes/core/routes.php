@@ -38,5 +38,29 @@ $routes=[
     },
     "about"=>function(){
         (new AboutController)->showView();
+    },
+    "products"=>function(){
+        (new ProductController)->showView();
+    },
+    "products-edit"=>function(){
+        (new ProductController)->showEditView();
+    },
+    "products-new"=>function(){
+        (new ProductController)->showNewView();
+    },
+    "products-api-update"=>function(){
+        (new ProductController)->updateProduct();
+    },
+    "products-api-delete"=>function(){
+        (new ProductController)->deleteProduct();
+    },
+    "products-api-delete-bulk"=>function(){
+        (new ProductController)->deleteProducts();
+    },
+    "products-api-check"=>function(){
+        (new ProductController)->checkProductCode();
+    },
+    "products-api-new"=>function(){
+        (new ProductController)->newProduct();
     }
 ];

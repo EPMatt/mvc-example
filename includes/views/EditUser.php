@@ -79,8 +79,8 @@
                     <label for="data_nascita">Birthdate</label>
                 </div>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" name="data_nascita" placeholder="2018/01/01"
-                        value="<?=$user->getData_nascita()?>">
+                <input type="date" class="form-control" name="data_nascita" oninput='checkDataLength("data_nascita","data_nascita-sm",1,50)' id="data_nascita" value="<?=$user->getData_nascita()?>">
+                            <small id="data_nascita-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
             <div class="form-group row align-items-center">
@@ -149,7 +149,7 @@
         </form>
         <div class="row justify-content-between mt-5">
             <a href="users" class="btn btn-secondary">Go back</a>
-            <button class="btn btn-primary" onclick='updateSHA2("pwd","pwd-crypted","form-submit");'
+            <button class="btn btn-primary" onclick='updateUser("pwd","pwd-crypted","form-submit");'
                 id="submit-button">Update
                 user</button>
         </div>
@@ -158,7 +158,7 @@
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
-        var submitFoo = function () { updateSHA2("pwd", "pwd-crypted", "form-submit") };
+        var submitFoo = function () { updateUser("pwd", "pwd-crypted", "form-submit") };
     </script>
     <script type="text/javascript" src="js/app.js"></script>
     <?php include "includes/views/components/footer.php";?>

@@ -98,7 +98,8 @@
                         </div>
                         <div class="form-group">
                             <label for="data_nascita">Birthdate</label>
-                            <input type="date" class="form-control" name="data_nascita" placeholder="2018/01/01">
+                            <input type="date" class="form-control" name="data_nascita" oninput='checkDataLength("data_nascita","data_nascita-sm",1,50)' id="data_nascita">
+                            <small id="data_nascita-sm" class="form-text text-muted form-errors"></small>
                         </div>
                         <div class="form-group">
                             <label for="via">Street</label>
@@ -127,7 +128,7 @@ foreach ($provinces as $province) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick='SHA2("pwd","pwd-crypted","form-submit");'
+                        <button type="button" class="btn btn-primary" onclick='newUser("pwd","pwd-crypted","form-submit");'
                             id="submit-button">Sign Up</button>
                     </div>
                 </div>
@@ -138,7 +139,7 @@ foreach ($provinces as $province) {
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
-        var submitFoo = function(){SHA2("pwd","pwd-crypted","form-submit")};
+        var submitFoo = function(){newUser("pwd","pwd-crypted","form-submit")};
     </script>
     <script type="text/javascript" src="js/app.js"></script>
     <?php include "includes/views/components/footer.php";?>

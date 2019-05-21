@@ -25,10 +25,15 @@ function checkPasswords(emptyAccepted) {
         document.getElementById("password-sm").innerHTML = "";
         enableSubmit();
     } else {
-        if (document.getElementById("pwd").style.border == "1px solid red") document.getElementById("pwd-renew").style.border = "1px solid red";
-        else document.getElementById("pwd-renew").style.border = "1px solid green";
+        if (document.getElementById("pwd").style.border == "1px solid red") {
+            document.getElementById("pwd-renew").style.border = "1px solid red";
+            disableSubmit();
+        } else {
+            document.getElementById("pwd-renew").style.border = "1px solid green";
+            enableSubmit();
+        }
         document.getElementById("password-sm").innerHTML = "";
-        enableSubmit();
+
     }
 }
 
@@ -130,17 +135,67 @@ function updateSelections() {
     var c = document.getElementById("bulkCheck");
     if ($('input:checkbox.elem-check:checked').length == 0) {
         c.checked = false;
-        c.indeterminate=false;
-    }else if ($('input:checkbox.elem-check:checked').length == $('input:checkbox.elem-check').length){
+        c.indeterminate = false;
+    } else if ($('input:checkbox.elem-check:checked').length == $('input:checkbox.elem-check').length) {
         c.checked = true;
-        c.indeterminate=false;
-    }else if (c.checked == true || c.checked == false) {
+        c.indeterminate = false;
+    } else if (c.checked == true || c.checked == false) {
         c.indeterminate = true;
     }
 }
 
-function deleteUsers(){
-    $('#users-form').prop('action',"users-api-delete-bulk");
-    $('#users_table_wrapper select').prop('name','');
+function deleteUsers() {
+    $('#users-form').prop('action', "users-api-delete-bulk");
+    $('#users_table_wrapper select').prop('name', '');
     $('#users-form').submit();
+}
+
+function deleteProducts() {
+    $('#products-form').prop('action', "products-api-delete-bulk");
+    $('#products_table_wrapper select').prop('name', '');
+    $('#products-form').submit();
+}
+
+
+function updateProduct(form) {
+    $('#' + form + ' input,textarea').trigger('input');
+    if (document.getElementById('submit-button').onclick != null) document.getElementById(form).submit();
+}
+
+function newProduct(form) {
+    $('#' + form + ' input,textarea').trigger('input');
+    if (document.getElementById('submit-button').onclick != null) document.getElementById(form).submit();
+}
+
+function updateUser(uncrypted, crypted, form) {
+    $('#' + form + ' input,textarea').trigger('input');
+    if (document.getElementById('submit-button').onclick != null) updateSHA2(uncrypted, crypted, form);
+}
+
+function newUser(uncrypted, crypted, form) {
+    $('#' + form + ' input,textarea').trigger('input');
+    // if (document.getElementById('submit-button').onclick!=null) SHA2(uncrypted,crypted,form);
+}
+
+function checkProductCode(current) {
+    var input = document.getElementById("product-code");
+    if (input.value.length === 0) {
+        input.style.border = "1px solid red";
+        document.getElementById("product-code-sm").innerHTML = "Product code cannot be empty";
+        disableSubmit();
+    } else {
+        $.post('./products-api-check', { pid: input.value }, function (d, q, x) {
+            if (d == 1 || d == 0 && current === input.value) {
+                input.style.border = "1px solid green";
+                document.getElementById("product-code-sm").innerHTML = "";
+                enableSubmit();
+            }
+            else {
+                input.style.border = "1px solid red";
+                document.getElementById("product-code-sm").innerHTML = "The product code is already in use";
+                disableSubmit();
+            }
+        });
+    }
+
 }

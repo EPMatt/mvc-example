@@ -61,7 +61,7 @@ foreach ($rs as $user) {
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-center align-items-center"><a
-                                            href="users-delete?id=<?=$user->getId()?>">
+                                            href="users-api-delete?id=<?=$user->getId()?>">
                                             <div
                                                 class="crud-icon crud-icon-delete d-flex justify-content-center align-items-center">
                                                 <img width="18px" height="18px" src="img/trashcan.svg">
