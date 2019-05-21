@@ -103,7 +103,7 @@ h1{
     .crud-button-right{
         text-align:right;
     }
-
+}
 
 .sorting::after, .sorting_asc::after, .sorting_desc::after{
     content:none !important;
