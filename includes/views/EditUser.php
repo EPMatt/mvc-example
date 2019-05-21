@@ -147,11 +147,11 @@
                 </div>
             </div>
         </form>
-        <div class="row justify-content-between mt-5">
-            <a href="users" class="btn btn-secondary">Go back</a>
-            <button class="btn btn-primary" onclick='updateUser("pwd","pwd-crypted","form-submit");'
+        <div class="row mt-5">
+            <div class="col-md-6 col-sm-12 mb-4 crud-button-left"><a href="users" class="btn btn-secondary">Go back</a></div>
+            <div class="col-md-6 col-sm-12 mb-4 crud-button-right"><button class="btn btn-primary" onclick='updateUser("pwd","pwd-crypted","form-submit");'
                 id="submit-button">Update
-                user</button>
+                user</button></div>
         </div>
     </div>
 

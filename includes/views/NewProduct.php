@@ -132,11 +132,11 @@
                 </div>
             </div>
         </form>
-        <div class="row justify-content-between mt-5">
-            <a href="products" class="btn btn-secondary">Go back</a>
-            <button class="btn btn-primary" onclick="newProduct('form-submit');"
+        <div class="row mt-5">
+            <div class="col-md-6 col-sm-12 mb-4 crud-button-left"><a href="products" class="btn btn-secondary">Go back</a></div>
+            <div class="col-md-6 col-sm-12 mb-4 crud-button-right"><button class="btn btn-primary" onclick="newProduct('form-submit');"
                 id="submit-button">Add
-                product</button>
+                product</button></div>
         </div>
     </div>
 

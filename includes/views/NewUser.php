@@ -142,10 +142,10 @@
                 </div>
             </div>
         </form>
-        <div class="row justify-content-between mt-5">
-            <a href="users" class="btn btn-secondary">Go back</a>
-            <button class="btn btn-primary" onclick='newUser("pwd","pwd-crypted","form-submit");'
-                id="submit-button">Add user</button>
+        <div class="row mt-5">
+            <div class="col-md-6 col-sm-12 mb-4 crud-button-left"><a href="users" class="btn btn-secondary">Go back</a></div>
+            <div class="col-md-6 col-sm-12 mb-4 crud-button-right"><button class="btn btn-primary" onclick='newUser("pwd","pwd-crypted","form-submit");'
+                id="submit-button">Add user</button></div>
         </div>
     </div>
 
