@@ -33,6 +33,8 @@
             The web app also uses Github's <a class="text-reset" href="https://github.com/primer/octicons/">Octicons</a>. Octicons are licensed under the <a class="text-reset" href="./lic/octicons.txt">MIT License</a>.
             <br><br>
             DBOrders is built over Twitter's <a class="text-reset" href="https://getbootstrap.com/">Bootstrap framework</a>. Bootstrap is licensed under the <a class="text-reset" href="./lic/bootstrap.txt">MIT License</a>.
+            <br><br>
+            Animated backgrounds are built with <a class="text-reset" href="https://github.com/VincentGarreau/particles.js">particles.js</a> by Vincent Garreau. Particles.js is licensed under the <a class="text-reset" href="./lic/particlesjs.txt">MIT License</a>.
             </div>
         </div>
         <div class="row">

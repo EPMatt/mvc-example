@@ -142,6 +142,7 @@ foreach ($provinces as $province) {
         var submitFoo = function(){newUser("pwd","pwd-crypted","form-submit")};
     </script>
     <script type="text/javascript" src="js/app.js"></script>
+    <?php include "includes/views/components/ParticlesBackground.php"?>
     <?php include "includes/views/components/footer.php";?>
 </body>
 

@@ -15,7 +15,7 @@
 <body class="text-center d-flex flex-column">
     <?php $home=''; require_once "includes/views/components/Navbar.php";?>
     <div class="container-fluid">
-        <div class="row align-items-center main ">
+    <div class="row align-items-center main">
             <div class="col">
                 <h1>Welcome to DBOrders, <?=$_SESSION['user']?>!</h1>
                 <p>Browse the products database from here!</p>
@@ -25,6 +25,7 @@
     </div>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <?php include "includes/views/components/ParticlesBackground.php"?>
     <?php include "includes/views/components/footer.php";?>
 </body>
 
