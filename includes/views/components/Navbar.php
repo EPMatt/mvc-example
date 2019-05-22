@@ -11,10 +11,13 @@
             <li class='nav-item <?=isset($about)?"active":""?>'>
                 <a class="nav-link" href="about">About</a>
             </li>
+            <?php if (isset($_SESSION['user'])){?>
             <li class='nav-item <?=isset($products)?"active":""?>'>
                 <a class="nav-link" href="products">Products</a>
             </li>
-            <?php if (isset($_SESSION['admin'])){?>
+            <?php
+            }
+            if (isset($_SESSION['admin'])){?>
             <li class='nav-item <?=isset($users)?"active":""?>'>
                 <a class="nav-link" href="users">Manage Users</a>
             </li>
