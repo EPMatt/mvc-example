@@ -174,7 +174,7 @@ function updateUser(uncrypted, crypted, form) {
 
 function newUser(uncrypted, crypted, form) {
     $('#' + form + ' input,textarea').trigger('input');
-    // if (document.getElementById('submit-button').onclick!=null) SHA2(uncrypted,crypted,form);
+    if (document.getElementById('submit-button').onclick!=null) SHA2(uncrypted,crypted,form);
 }
 
 function checkProductCode(current) {
