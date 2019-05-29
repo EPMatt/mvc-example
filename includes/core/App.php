@@ -6,9 +6,9 @@
  */
 
 require_once "routes.php";
-function __autoload($class_name) {
+spl_autoload_register(function($class_name) {
     require_once "includes/controllers/$class_name.php";
-}
+});
 class App {
     protected $route;
     public function __construct() {
