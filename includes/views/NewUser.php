@@ -31,7 +31,7 @@
                     <h4>Personal info:</h4>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2 col-md-2">
                     <label for="username">Username</label>
                 </div>
@@ -51,7 +51,7 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2 col-md-2">
                     <label for="firstname">First Name</label>
                 </div>
@@ -69,7 +69,7 @@
                     <small id="lastname-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2">
                     <label for="data_nascita">Birthdate</label>
                 </div>
@@ -78,7 +78,7 @@
                             <small id="data_nascita-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2">
                     <label for="via">Street</label>
                 </div>
@@ -88,7 +88,7 @@
                     <small id="via-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2 col-md-2">
                     <label for="comune">City</label>
                 </div>
@@ -120,7 +120,7 @@
                     <h4>Security:</h4>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2">
                     <label for="password">User Password</label>
                 </div>
@@ -131,7 +131,7 @@
                     <input name="pwd" type="hidden" id="pwd-crypted">
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2">
                     <label for="password-renew">Repeat Password</label>
                 </div>

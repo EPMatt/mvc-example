@@ -110,13 +110,16 @@ foreach ($rs as $product) {
     <script type="text/javascript" src="./datatables/Responsive-2.2.2/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript">
     $('document').ready(function() {
-        $('input[type="search"]').on('input', function() {
-            $('input:checkbox').prop('checked', false);
-            $('#bulkCheck').prop('indeterminate', false);
-        });
         $('#products_table').DataTable({
             responsive: true
         });
+        $('#products_table_filter input').get(0).type= "search";
+        $('#products_table_filter input').on('input',function(){
+            document.getElementById('bulkCheck').checked=false;
+            document.getElementById('bulkCheck').indeterminate=false;
+            updateBulkSelection();
+        });
+        <?php if(isset($_SESSION['admin'])||isset($_SESSION['employee'])){?>
         $('#products_table_wrapper>:nth-child(1)>:nth-child(1)').removeClass('col-md-6').addClass('col-md-3');
         $('#products_table_wrapper>:nth-child(1)>:nth-child(2)').before($('<div></div>').addClass(
             'col-sm-12 col-md-3 text-center').prop('id', 'table_bulk').html(
@@ -125,6 +128,9 @@ foreach ($rs as $product) {
         $('#products_table_wrapper>:nth-child(1)').addClass('align-items-center justify-content-center');
         $('#products_table_wrapper>:nth-child(1) label').addClass('mb-0');
         $('#products_table_wrapper>:nth-child(1)>*').addClass('my-2');
+        <?php
+        }
+        ?>
     });
     </script>
     <?php include "includes/views/components/footer.php";?>

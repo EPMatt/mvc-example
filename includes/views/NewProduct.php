@@ -35,7 +35,7 @@
                     <h4>Data:</h4>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2 col-md-2">
                     <label for="product-code">Product Code</label>
                 </div>
@@ -64,7 +64,7 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2 col-md-2">
                     <label for="product-name">Product Name</label>
                 </div>
@@ -82,7 +82,7 @@
                     <small id="product-scale-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2">
                     <label for="product-vendor">Product Vendor</label>
                 </div>
@@ -92,7 +92,7 @@
                     <small id="product-vendor-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2">
                     <label for="product-description">Product Description</label>
                 </div>
@@ -103,7 +103,7 @@
                     <small id="product-description-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2 col-md-2">
                     <label for="quantity">Quantity In Stock</label>
                 </div>
@@ -121,7 +121,7 @@
                     <small id="price-sm" class="form-text text-muted form-errors"></small>
                 </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="form-group row align-items-baseline">
                 <div class="col-sm-2">
                     <label for="msrp">MSRP</label>
                 </div>

@@ -94,12 +94,14 @@ foreach ($rs as $user) {
     <script type="text/javascript" src="./datatables/Responsive-2.2.2/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript">
     $('document').ready(function() {
-        $('input[type="search"]').on('input', function() {
-            $('input:checkbox').prop('checked', false);
-            $('#bulkCheck').prop('indeterminate', false);
-        });
         $('#users_table').DataTable({
             responsive: true
+        });
+        $('#users_table_filter input').get(0).type= "search";
+        $('#users_table_filter input').on('input',function(){
+            document.getElementById('bulkCheck').checked=false;
+            document.getElementById('bulkCheck').indeterminate=false;
+            updateBulkSelection();
         });
         $('#users_table_wrapper>:nth-child(1)>:nth-child(1)').removeClass('col-md-6').addClass('col-md-3');
         $('#users_table_wrapper>:nth-child(1)>:nth-child(2)').before($('<div></div>').addClass(

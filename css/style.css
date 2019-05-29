@@ -54,14 +54,8 @@
     font-family: 'Inter';
     font-weight:200 !important;
 }
-nav *{
-    font-weight:400 !important;
-}
 
-.footer *{
-    font-weight:400 !important;
-}
-a.text-reset{
+.footer *, nav *, a.text-reset, th, span.dtr-title, b{
     font-weight:400 !important;
 }
 
