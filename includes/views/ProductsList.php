@@ -97,7 +97,14 @@ foreach ($rs as $product) {
 ?>
                         </tbody>
                     </table>
-                </form> <a class="btn btn-primary mt-5" href="products-new">New Product</a>
+                </form>
+                <?php
+                if(isset($_SESSION['employee'])||isset($_SESSION['admin'])){
+                ?>
+                <a class="btn btn-primary mt-5" href="products-new">New Product</a>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>
