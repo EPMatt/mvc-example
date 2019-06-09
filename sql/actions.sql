@@ -1,11 +1,17 @@
+DROP TABLE IF EXISTS Privilege;
+DROP TABLE IF EXISTS Level;
 DROP TABLE IF EXISTS Route;
+
 CREATE TABLE Route(
     name VARCHAR(50) PRIMARY KEY,
     controller VARCHAR(50) NOT NULL,
     function VARCHAR(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS Privilege;
+CREATE TABLE Level(
+    name VARCHAR(30) PRIMARY KEY
+);
+
 CREATE TABLE Privilege(
     route VARCHAR(50),
     level VARCHAR(30),
@@ -14,10 +20,6 @@ CREATE TABLE Privilege(
     PRIMARY KEY(route,level)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS Level;
-CREATE TABLE Level(
-    name VARCHAR(30) PRIMARY KEY
-);
 
 INSERT INTO Route VALUES
 ('signup','UserController','signup'),
@@ -40,7 +42,7 @@ INSERT INTO Route VALUES
 ('products-api-delete','ProductController','deleteProduct'),
 ('products-api-delete-bulk','ProductController','deleteProducts'),
 ('products-api-check','ProductController','checkProductCode'),
-('product-api-new','ProductController','newProduct');
+('products-api-new','ProductController','newProduct');
 
 INSERT INTO Level VALUES
 ('Administrator'),
@@ -60,7 +62,7 @@ INSERT INTO Privilege VALUES
 ('users-api-update','Administrator'),
 ('users-api-delete','Administrator'),
 ('users-api-delete-bulk','Administrator'),
-('users-api-check','Administrator'),
+('users-api-check','Public'),
 ('users-api-new','Administrator'),
 ('about','Public'),
 ('products','Logged'),
@@ -69,10 +71,12 @@ INSERT INTO Privilege VALUES
 ('products-api-update','Employee'),
 ('products-api-delete','Employee'),
 ('products-api-delete-bulk','Employee'),
-('product-api-new','Employee'),
+('products-api-new','Employee'),
+('products-api-check','Employee'),
 ('products-edit','Administrator'),
 ('products-new','Administrator'),
 ('products-api-update','Administrator'),
 ('products-api-delete','Administrator'),
 ('products-api-delete-bulk','Administrator'),
-('product-api-new','Administrator');
+('products-api-new','Administrator'),
+('products-api-check','Administrator');
