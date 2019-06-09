@@ -11,18 +11,18 @@
             <li class='nav-item <?=isset($about)?"active":""?>'>
                 <a class="nav-link" href="about">About</a>
             </li>
-            <?php if (isset($_SESSION['user'])){?>
+            <?php if (App::isLogged()){?>
             <li class='nav-item <?=isset($products)?"active":""?>'>
                 <a class="nav-link" href="products">Products</a>
             </li>
             <?php
             }
-            if (isset($_SESSION['admin'])){?>
+            if (App::getUserLevel()==='Administrator'){?>
             <li class='nav-item <?=isset($users)?"active":""?>'>
                 <a class="nav-link" href="users">Manage Users</a>
             </li>
             <?php } ?>
-            <?php if (isset($_SESSION['user'])){?>
+            <?php if (App::isLogged()){?>
             <li class="nav-item">
                 <a class="nav-link" href="logout">Logout</a>
             </li>

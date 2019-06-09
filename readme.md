@@ -5,7 +5,7 @@ For the model component, designed with ORM, I used my [ORM Templates](https://gi
 
 ## Installation
 * Import the [`classicmodels` sample database](http://www.mysqltutorial.org/wp-content/uploads/2018/03/mysqlsampledatabase.zip);
-* Run `province.sql` and `users.sql` SQL scripts on the `classicmodels` db;
+* Run `province.sql`, `users.sql` and `actions.sql` SQL scripts on the `classicmodels` db;
 * Edit the `config.ini` file with your settings for connecting to the DBMS.
 
 ## Copyright Notice

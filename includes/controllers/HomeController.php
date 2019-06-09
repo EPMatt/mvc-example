@@ -5,7 +5,7 @@
  */
 class HomeController extends Controller{
    public function showView(){
-       if(isset($_SESSION['user'])){
+       if(App::isLogged()){
             require_once "includes/views/Home.php";
        }else{
             require_once "includes/model/Provinces.php";

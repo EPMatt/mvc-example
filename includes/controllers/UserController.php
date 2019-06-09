@@ -11,102 +11,72 @@ class UserController extends Controller {
     }
 
     public function showView() {
-        if (isset($_SESSION['admin'])) {
-            $rs = $this->users->selectByFilter([]);
-            require_once "includes/views/UserManagement.php";
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
-        } else {
-            header('Location: .');
-        }
+        $rs = $this->users->selectByFilter([]);
+        require_once "includes/views/UserManagement.php";
     }
 
     public function showEditView() {
-        if (isset($_SESSION['admin'])) {
-            $user = $this->users->selectByFilter(["id" => $_GET['id']])[0];
-            require_once "includes/model/Provinces.php";
-            $provincesDao = new Provinces(new DBConnector("config.ini"), "province");
-            $provinces = $provincesDao->selectByFilter([]);
-            require_once "includes/views/EditUser.php";
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
-        } else {
-            header('Location: .');
-        }
+        $user = $this->users->selectByFilter(["id" => $_GET['id']])[0];
+        require_once "includes/model/Provinces.php";
+        $provincesDao = new Provinces(new DBConnector("config.ini"), "province");
+        $provinces = $provincesDao->selectByFilter([]);
+        require_once "includes/views/EditUser.php";
     }
 
     public function updateUser() {
-        if (isset($_SESSION['admin'])) {
-            //get from post array
-            $id = $_GET['id'];
-            $user = $_POST['user'];
-            $password = $_POST['pwd'];
-            $cognome = $_POST['cognome'];
-            $nome = $_POST['nome'];
-            $data_nascita = $_POST['data_nascita'];
-            $via = $_POST['via'];
-            $provincia = $_POST['provincia'];
-            $comune = $_POST['comune'];
-            $tipologia = $_POST['tipologia'];
-            if ($password == '') {
-                //no change password
-                $password = ($this->users->selectByFilter(["id" => $_GET['id']])[0])->getPassword();
-            }
-            //check data
-            $safe_data = true;
-            //insert
-            if ($safe_data) {
-                if ($this->users->update(new User($id, $user, $password, $cognome, $nome, $data_nascita, $via, $provincia, $comune, $tipologia))) {
-                    header("Location: users-edit?id=$id&success");
-                } else {
-                    header("Location: users-edit?id=$id&error");
-                }
+        //get from post array
+        $id = $_GET['id'];
+        $user = $_POST['user'];
+        $password = $_POST['pwd'];
+        $cognome = $_POST['cognome'];
+        $nome = $_POST['nome'];
+        $data_nascita = $_POST['data_nascita'];
+        $via = $_POST['via'];
+        $provincia = $_POST['provincia'];
+        $comune = $_POST['comune'];
+        $tipologia = $_POST['tipologia'];
+        if ($password == '') {
+            //no change password
+            $password = ($this->users->selectByFilter(["id" => $_GET['id']])[0])->getPassword();
+        }
+        //check data
+        $safe_data = true;
+        //insert
+        if ($safe_data) {
+            if ($this->users->update(new User($id, $user, $password, $cognome, $nome, $data_nascita, $via, $provincia, $comune, $tipologia))) {
+                header("Location: users-edit?id=$id&success");
             } else {
                 header("Location: users-edit?id=$id&error");
             }
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
         } else {
-            header('Location: .');
+            header("Location: users-edit?id=$id&error");
         }
     }
 
     public function deleteUsers() {
-        if (isset($_SESSION['admin'])) {
-            $count = 0;
-            foreach ($_POST as $key => $value) {
-                $id = $key;
-                if ($this->users->delete($this->users->selectByFilter(["id" => $id])[0])) {
-                    $count++;
-                }
+        $count = 0;
+        foreach ($_POST as $key => $value) {
+            $id = $key;
+            if ($this->users->delete($this->users->selectByFilter(["id" => $id])[0])) {
+                $count++;
+            }
 
-            }
-            $total = count($_POST);
-            if ($count === $total) {
-                header("Location: users?delete-bulk-success&c=$count&t=$total");
-            } else {
-                header("Location: users?delete-bulk-error&c=$count&t=$total");
-            }
-            print_r($_POST);
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
-        } else {
-            header('Location: .');
         }
+        $total = count($_POST);
+        if ($count === $total) {
+            header("Location: users?delete-bulk-success&c=$count&t=$total");
+        } else {
+            header("Location: users?delete-bulk-error&c=$count&t=$total");
+        }
+        print_r($_POST);
     }
 
     public function deleteUser() {
-        if (isset($_SESSION['admin'])) {
-            $id = $_GET['id'];
-            if ($this->users->delete($this->users->selectByFilter(["id" => $id])[0])) {
-                header("Location: users?id=$id&delete-success");
-            } else {
-                header("Location: users?id=$id&delete-error");
-            }
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
+        $id = $_GET['id'];
+        if ($this->users->delete($this->users->selectByFilter(["id" => $id])[0])) {
+            header("Location: users?id=$id&delete-success");
         } else {
-            header('Location: .');
+            header("Location: users?id=$id&delete-error");
         }
     }
 
@@ -116,11 +86,7 @@ class UserController extends Controller {
             header("Location: .?error");
         } else {
             $_SESSION['user'] = $rs[0]->getUser();
-            if ($rs[0]->getTipologia() === 'Administrator') {
-                $_SESSION['admin'] = true;
-            }else if ($rs[0]->getTipologia() === 'Employee') {
-                $_SESSION['employee'] = true;
-            }
+            $_SESSION['level'] = $rs[0]->getTipologia();
             header("Location: .");
         }
     }
@@ -142,6 +108,7 @@ class UserController extends Controller {
         if ($safe_data) {
             if ($this->users->insert(new User(null, $user, $password, $cognome, $nome, $data_nascita, $via, $provincia, $comune, $tipologia))) {
                 $_SESSION['user'] = $_POST['user'];
+                $_SESSION['level'] = $rs[0]->getTipologia();
                 header("Location: .");
             } else {
                 header("Location: .?errorsignup");
@@ -166,48 +133,36 @@ class UserController extends Controller {
     }
 
     public function showNewView() {
-        if (isset($_SESSION['admin'])) {
-            require_once "includes/model/Provinces.php";
-            $provincesDao = new Provinces(new DBConnector("config.ini"), "province");
-            $provinces = $provincesDao->selectByFilter([]);
-            require_once "includes/views/NewUser.php";
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
-        } else {
-            header('Location: .');
-        }
+        require_once "includes/model/Provinces.php";
+        $provincesDao = new Provinces(new DBConnector("config.ini"), "province");
+        $provinces = $provincesDao->selectByFilter([]);
+        require_once "includes/views/NewUser.php";
     }
 
     public function newUser() {
-        if (isset($_SESSION['admin'])) {
-            //get from post array
-            $id = $_GET['id'];
-            $user = $_POST['user'];
-            $password = $_POST['pwd'];
-            $cognome = $_POST['cognome'];
-            $nome = $_POST['nome'];
-            $data_nascita = $_POST['data_nascita'];
-            $via = $_POST['via'];
-            $provincia = $_POST['provincia'];
-            $comune = $_POST['comune'];
-            $tipologia = $_POST['tipologia'];
-            //check data
-            $safe_data = true;
-            //insert
-            if ($safe_data) {
-                if ($this->users->insert(new User($id, $user, $password, $cognome, $nome, $data_nascita, $via, $provincia, $comune, $tipologia))) {
-                    $_SESSION['user'] = $_POST['user'];
-                    header("Location: users?id=$id&new-success");
-                } else {
-                    header("Location: users-new?error");
-                }
+        //get from post array
+        $id = $_GET['id'];
+        $user = $_POST['user'];
+        $password = $_POST['pwd'];
+        $cognome = $_POST['cognome'];
+        $nome = $_POST['nome'];
+        $data_nascita = $_POST['data_nascita'];
+        $via = $_POST['via'];
+        $provincia = $_POST['provincia'];
+        $comune = $_POST['comune'];
+        $tipologia = $_POST['tipologia'];
+        //check data
+        $safe_data = true;
+        //insert
+        if ($safe_data) {
+            if ($this->users->insert(new User($id, $user, $password, $cognome, $nome, $data_nascita, $via, $provincia, $comune, $tipologia))) {
+                $_SESSION['user'] = $_POST['user'];
+                header("Location: users?id=$id&new-success");
             } else {
                 header("Location: users-new?error");
             }
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
         } else {
-            header('Location: .');
+            header("Location: users-new?error");
         }
     }
 

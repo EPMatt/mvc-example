@@ -44,7 +44,7 @@
                                 <th>Birthdate</th>
                                 <th>Address</th>
                                 <th class="all">Actions</th>
-                                <th class="check-th all"><input type="checkbox" class="check"
+                                <th class="check-th all text-center"><input type="checkbox" class="check"
                                         onchange="updateBulkSelection()" id="bulkCheck"></th>
                             </tr>
                         </thead>
@@ -75,7 +75,7 @@ foreach ($rs as $user) {
                                         </a>
                                     </div>
                                 </td>
-                                <td><input name="<?=$user->getId()?>" type="checkbox" class="check elem-check"
+                                <td class="text-center"><input name="<?=$user->getId()?>" type="checkbox" class="check elem-check"
                                         onchange="updateSelections()"></td>
                             </tr> <?php
 }

@@ -11,29 +11,16 @@ class ProductController extends Controller {
     }
 
     public function showView() {
-        if (isset($_SESSION['user'])) {
             $rs = $this->products->selectByFilter([]);
             require_once "includes/views/ProductsList.php";
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
-        } else {
-            header('Location: .');
-        }
     }
 
     public function showEditView() {
-        if (isset($_SESSION['admin']) || isset($_SESSION['employee'])) {
             $product = $this->products->selectByFilter(["productCode" => $_GET['id']])[0];
             require_once "includes/views/EditProduct.php";
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
-        } else {
-            header('Location: .');
-        }
     }
 
     public function updateProduct() {
-        if (isset($_SESSION['admin']) || isset($_SESSION['employee'])) {
             //get from post array
             $productCode = $_POST['product-code'];
             $productName = $_POST['product-name'];
@@ -57,15 +44,9 @@ class ProductController extends Controller {
             } else {
                 header("Location: products-edit?id=$_GET[id]&error");
             }
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
-        } else {
-            header('Location: .');
-        }
     }
 
     public function deleteProducts() {
-        if (isset($_SESSION['admin']) || isset($_SESSION['employee'])) {
             $count = 0;
             foreach ($_POST as $key => $value) {
                 $id = $key;
@@ -81,40 +62,22 @@ class ProductController extends Controller {
                 header("Location: products?delete-bulk-error&c=$count&t=$total");
             }
             print_r($_POST);
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
-        } else {
-            header('Location: .');
-        }
     }
 
     public function deleteProduct() {
-        if (isset($_SESSION['admin']) || isset($_SESSION['employee'])) {
             $id = $_GET['id'];
             if ($this->products->delete($this->products->selectByFilter(["productCode" => $id])[0])) {
                 header("Location: products?id=$id&delete-success");
             } else {
                 header("Location: products?id=$id&delete-error");
             }
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
-        } else {
-            header('Location: .');
-        }
     }
 
     public function showNewView() {
-        if (isset($_SESSION['admin']) || isset($_SESSION['employee'])) {
             require_once "includes/views/NewProduct.php";
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
-        } else {
-            header('Location: .');
-        }
     }
 
     public function newProduct() {
-        if (isset($_SESSION['admin']) || isset($_SESSION['employee'])) {
             //get from post array
             $productCode = $_POST['product-code'];
             $productName = $_POST['product-name'];
@@ -138,11 +101,6 @@ class ProductController extends Controller {
             } else {
                 header("Location: products-new?id=$productCode&error");
             }
-        } else if (isset($_SESSION['user'])) {
-            require_once "includes/views/404.php";
-        } else {
-            header('Location: .');
-        }
     }
 
     public function checkProductCode() {

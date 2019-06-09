@@ -47,9 +47,9 @@
                                 <th>In Stock</th>
                                 <th>Buy Price</th>
                                 <th>MSRP</th>
-                                <?php if(isset($_SESSION['employee'])||isset($_SESSION['admin'])){ ?>
+                                <?php if(App::getUserLevel()==='Administrator' || App::getUserLevel()==='Employee'){ ?>
                                 <th class="all">Actions</th>
-                                <th class="check-th all"><input type="checkbox" class="check"
+                                <th class="check-th all text-center"><input type="checkbox" class="check"
                                         onchange="updateBulkSelection()" id="bulkCheck"></th>
                                 <?php } ?>
                             </tr>
@@ -58,9 +58,6 @@
                             <?php
 foreach ($rs as $product) {
     ?>
-                            <script>
-                            console.log("<?=$product->getProductCode()?>")
-                            </script>
                             <tr>
                                 <td><?=$product->getProductCode()?></td>
                                 <td><?=$product->getProductName()?></td>
@@ -71,7 +68,7 @@ foreach ($rs as $product) {
                                 <td><?=$product->getQuantityInStock()?></td>
                                 <td><?=$product->getBuyPrice()?></td>
                                 <td><?=$product->getMsrp()?></td>
-                                <?php if(isset($_SESSION['employee'])||isset($_SESSION['admin'])){ ?>
+                                <?php if(App::getUserLevel()==='Administrator' || App::getUserLevel()==='Employee'){ ?>
                                 <td>
                                     <div class="d-flex justify-content-center align-items-center"><a
                                             href="products-api-delete?id=<?=$product->getProductCode()?>">
@@ -88,7 +85,7 @@ foreach ($rs as $product) {
                                         </a>
                                     </div>
                                 </td>
-                                <td><input name="<?=$product->getProductCode()?>" type="checkbox"
+                                <td class="text-center"><input name="<?=$product->getProductCode()?>" type="checkbox"
                                         class="check elem-check" onchange="updateSelections()"> </td>
                             </tr>
                             <?php } ?>
@@ -99,7 +96,7 @@ foreach ($rs as $product) {
                     </table>
                 </form>
                 <?php
-                if(isset($_SESSION['employee'])||isset($_SESSION['admin'])){
+                if(App::getUserLevel()==='Administrator' || App::getUserLevel()==='Employee'){
                 ?>
                 <a class="btn btn-primary mt-5" href="products-new">New Product</a>
                 <?php
@@ -126,7 +123,7 @@ foreach ($rs as $product) {
             document.getElementById('bulkCheck').indeterminate=false;
             updateBulkSelection();
         });
-        <?php if(isset($_SESSION['admin'])||isset($_SESSION['employee'])){?>
+        <?php if(App::getUserLevel()==='Administrator' || App::getUserLevel()==='Employee'){?>
         $('#products_table_wrapper>:nth-child(1)>:nth-child(1)').removeClass('col-md-6').addClass('col-md-3');
         $('#products_table_wrapper>:nth-child(1)>:nth-child(2)').before($('<div></div>').addClass(
             'col-sm-12 col-md-3 text-center').prop('id', 'table_bulk').html(
