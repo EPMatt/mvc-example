@@ -10,7 +10,7 @@ CREATE TABLE Route(
 
 CREATE TABLE Level(
     name VARCHAR(30) PRIMARY KEY
-);
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE Privilege(
     route VARCHAR(50),

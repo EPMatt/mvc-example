@@ -107,7 +107,8 @@ class UserController extends Controller {
         //insert
         if ($safe_data) {
             if ($this->users->insert(new User(null, $user, $password, $cognome, $nome, $data_nascita, $via, $provincia, $comune, $tipologia))) {
-                $_SESSION['user'] = $_POST['user'];
+                $rs = $this->users->selectByFilter(["user" => $_POST['user'], "password" => $_POST['pwd']]);
+                $_SESSION['user'] = $rs[0]->getUser();
                 $_SESSION['level'] = $rs[0]->getTipologia();
                 header("Location: .");
             } else {
